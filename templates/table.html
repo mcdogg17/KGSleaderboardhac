@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                {% for user in users %}
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="heading-{{ user }}">
+                        <h4 class="panel-title">
+                            <a class="button" id="{{ user }}" role="button"
+                               onclick="get_user_info('{{ user }}', '#{{ loop.index}} {{ user }}')">
+                                #{{ loop.index}} {{ user }}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-{{ user }}" class="collapse"
+                         role="tabpanel"
+                         aria-labelledby="heading-{{ user }}">
+                        <div class="panel-body">
+                            <table id="table_{{ user }}" class="table table-bordered"
+                                   style="background-color: #fff;">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th class="text-center" scope="col">#</th>
+                                    <th class="text-center" scope="col">Nickname</th>
+                                    <th class="text-center" scope="col">Color</th>
+                                    <th class="text-center" scope="col">Score</th>
+                                    <th class="text-center" scope="col">Duration</th>
+                                </tr>
+                                </thead>
+
+                                <tbody id="{{ user }}GameRow1"
+                                       onclick="window.location.href = '/leaderboard/review/{{ user }}/-1'"></tbody>
+                                <tbody id="{{ user }}GameRow2"
+                                       onclick="window.location.href = '/leaderboard/review/{{ user }}/-2'"></tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
